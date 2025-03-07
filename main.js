@@ -1,6 +1,7 @@
 let notes = [];
 function rendererNotes(){
-let contentRef = document.getElementById('content')
+let contentRef = document.getElementById('note-content');
+let noteTitle = document.getElementById('note-title');
 contentRef.innerHTML = notes;
 }
 function addNote(){
