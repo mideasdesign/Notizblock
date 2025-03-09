@@ -6,11 +6,11 @@
     <title>Document</title>
     <script src="./script.js"></script>
 </head>
-<body>
+<body onload="renderNotes()">
     <h1>Bücher</h1>
-    <input type="text" id="book-input">
-    <button onclick="addbook()">hinzufügen</button>
-    <div id="book-list"></div>
-    <div id="books-readed"></div>
+    <input type="text" id="input-note">
+    <button onclick="addNote()">hinzufügen</button>
+    <div id="notes-list"></div>
+    <div id="notes-trash"></div>
 </body>
 </html>

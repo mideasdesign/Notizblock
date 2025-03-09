@@ -1,23 +1,27 @@
-let books = [];
+let notes = ['banana', 'Erdbeere', 'apfel'];
 let readed = [];
 
-function addBook() {
-    let bookList = document.getElementById(book-input);
-    let bookListEntry = bookList.value;
-   books.push(bookListEntry);
-   renderBook();
-   bookList.value = "";
-}
-
-function renderBook() {
-    let bookRef = document.getElementById('book-list');
-    bookRef.innerHTML = "";
-    for (let indexBooks = 0; indexBooks < books.length; indexBooks++) {
-        let book = books[indexBooks];
-        bookRef.innerHTML += getNotesTemplate(indexBooks);
+function renderNotes() {
+    let notesRef = document.getElementById('notes-list');
+   notesRef.innerHTML = "";
+    for (let indexNote = 0; indexNote < notes.length; indexNote++) {
+        notesRef.innerHTML += getNotesTemplate(indexNote);
     }
 }
 
-function getNotesTemplate(book) {
-    return `<p>${book}</p>`
+function addNote(indexNote) {
+    let noteContentRef = document.getElementById('input-note');
+    let noteInput = noteContentRef.value;     
+    notes.push(noteInput);
+    renderNotes();
+    noteContentRef.value = "";
+}
+
+function deleteNote(indexNote) {
+    notes.splice(indexNote, 1);
+    renderNotes();
+}
+
+function getNotesTemplate(indexNote) {
+    return `<p>+ ${notes[indexNote]} <button onclick="deleteNote(${indexNote})">X</button></p>`
 }

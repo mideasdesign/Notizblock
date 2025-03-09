@@ -1,22 +1,14 @@
-let notes = [];
+let notes = ['banana', 'Erdbeere', 'apfel'];
 
-function addBook() {
-    let notesList = document.getElementById(book-input);
-    let bookListEntry = bookList.value;
-   books.push(bookListEntry);
-   renderBook();
-   bookList.value = "";
-}
 
-function renderBook() {
-    let bookRef = document.getElementById('book-list');
-    bookRef.innerHTML = "";
-    for (let indexBooks = 0; indexBooks < books.length; indexBooks++) {
-        let book = books[indexBooks];
-        bookRef.innerHTML += getNotesTemplate(indexBooks);
+function renderNotes() {
+    let notesRef = document.getElementById('notes-list');
+    notesRef.innerHTML = "";
+    for (let indexNote = 0; indexNote < notes.length; indexNote++) {
+        notesRef.innerHTML += getNotesTemplate(note); 
+        
     }
 }
-
-function getNotesTemplate(book) {
-    return `<p>${book}</p>`
+function getNotesTemplate(note) {
+    return `<p>+ ${note} </p>`
 }
