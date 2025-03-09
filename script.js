@@ -1,5 +1,5 @@
 let notes = ['banana', 'Erdbeere', 'apfel'];
-let readed = [];
+let trash = [];
 
 function renderNotes() {
     let notesRef = document.getElementById('notes-list');
@@ -9,6 +9,15 @@ function renderNotes() {
     }
 }
 
+function renderTrashNotes() {
+    let trashNotesRef = document.getElementById('notes-trash');
+   trashNotesRef.innerHTML = "";
+    for (let indexTrashNote = 0; indexTrashNote < trash.length; indexTrashNote++) {
+        trashNotesRef.innerHTML += getTrashNotesTemplate(indexTrashNote);
+    }
+}
+
+
 function addNote(indexNote) {
     let noteContentRef = document.getElementById('input-note');
     let noteInput = noteContentRef.value;     
@@ -17,11 +26,24 @@ function addNote(indexNote) {
     noteContentRef.value = "";
 }
 
-function deleteNote(indexNote) {
-    notes.splice(indexNote, 1);
+function emtyTrash(indexTrashNote) {
+    trash.splice(indexTrashNote, 1);
+    renderTrashNotes();
+    trashNotesRef.value = "";
+}
+
+function addToTrash(indexNote) {
+    let trashNote = notes.splice(indexNote, 1);
+    trash.push(trashNote);
+    
     renderNotes();
+    renderTrashNotes();
 }
 
 function getNotesTemplate(indexNote) {
-    return `<p>+ ${notes[indexNote]} <button onclick="deleteNote(${indexNote})">X</button></p>`
+    return `<p>+ ${notes[indexNote]} <button onclick="addToTrash(${indexNote})">X</button></p>`
 }
+ function getTrashNotesTemplate(indexTrashNote) {
+    return `<p>+ ${trash[indexTrashNote]} <button onclick="emtyTrash(${indexTrashNote})">emty trash</button></p>`
+}
+
