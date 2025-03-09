@@ -1,35 +1,63 @@
-let notes = [];
-let notesTitle = [];
+let notes = ['banana', 'Erdbeere', 'apfel'];
+let trash = [];
+let notesTitles = ['title0', 'title1', 'title2'];
+let notesTitlesTrash = [];
 
-function addNote(){
-    let noteInputRef = document.getElementById('note-input');
-    let noteInput = noteInputRef.value;
-    let noteTitleRef = document.getElementById('note-title');
-    let noteTitleInput = noteTitleRef.value;
+function renderNotes() {
+    let notesRef = document.getElementById('notes-list');
+   notesRef.innerHTML = "";
+    for (let indexNote = 0; indexNote < notes.length; indexNote++) {
+        notesRef.innerHTML += getNotesTemplate(indexNote);
+    }
+}
+
+function renderTrashNotes() {
+    let trashNotesRef = document.getElementById('notes-trash');
+   trashNotesRef.innerHTML = "";
+    for (let indexTrashNote = 0; indexTrashNote < trash.length; indexTrashNote++) {
+        trashNotesRef.innerHTML += getTrashNotesTemplate(indexTrashNote);
+    }
+}
+function renderTrashNotesTitle() {
+    let trashNotesTitlesRef = document.getElementById('notes-trash');
+    trashNotesTitlesRef.innerHTML = "";
+    for (let indexTrashNoteTitle = 0; indexTrashNoteTitle < trash.length; indexTrashNoteTitle++) {
+        trashNotesTitlesRef.innerHTML += getTrashNotesTemplate(indexTrashNoteTitle);
+    }
+}
+
+
+function addNote(indexNote) {
+    let noteContentRef = document.getElementById('input-note');
+    let noteTitleRef = document.getElementById('input-note-title');
+    let noteTitleInput = noteTitleRef.value;    
+    let noteInput = noteContentRef.value;  
+    notesTitles.push(noteTitleInput);
     notes.push(noteInput);
-    notesTitle.push(noteTitleInput);
+    renderNotes();
+    noteTitleRef.value = "";
+    noteContentRef.value = "";
+}
+
+function emtyTrash(indexTrashNote) {
+    trash.splice(indexTrashNote, 1);
+    renderTrashNotes();
+}
+
+function addToTrash(indexNote) {
+    let trashNote = notes.splice(indexNote, 1);
+    trash.push(trashNote[0]);
+    let trashNoteTitles = notesTitles.splice(indexNote, 1);
+    notesTitlesTrash.push(trashNoteTitles[0]);
     
     renderNotes();
-    noteInputRef.value = "";
-    noteTitleRef.value = "";
-    }
-
-function renderNotes(notes){
-let contentRef = document.getElementById('note-content');
-    contentRef.innerHTML = "";
-    let contentTitleRef = document.getElementById('note-header');
-    contentTitleRef.innerHTML = ""; 
-     
-for (let notesIndex = 0; notesIndex < notes.length; notesIndex++) {
-   contentRef.innerHTML += getNotesHtml(notes); 
-
-}
+    renderTrashNotes();
 }
 
-function getNotesHtml(notes) {
-    let notesHeaderTitle = document.getElementById('note-header');
-    notesHeaderTitle.innerHTML = notesTitle;
-    document.getElementById('note-content');
-   return `
-   <p>${notes}</p>`
+function getNotesTemplate(indexNote) {
+    return `<p>+ ${notesTitles[indexNote]} -  ${notes[indexNote]} <button onclick="addToTrash(${indexNote})">X</button></p>`
 }
+ function getTrashNotesTemplate(indexTrashNote) {
+    return `<p>+ ${trash[indexTrashNote]} <button onclick="emtyTrash(${indexTrashNote})">emty trash</button></p>`
+}
+
