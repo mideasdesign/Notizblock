@@ -1,9 +1,11 @@
-let notes = ['banana', 'Erdbeere', 'apfel'];
+
+let notes = ["title"];
 let trash = [];
-let notesTitles = ['title0', 'title1', 'title2'];
+let notesTitles = ["der Titel"];
 let notesTitlesTrash = [];
 
 function renderNotes() {
+getFromLocalStorage();
     let notesRef = document.getElementById('notes-container');
     let notesTitleRef = document.getElementById('notes-container');
    notesRef.innerHTML = "";
@@ -36,9 +38,20 @@ function addNote(indexNote) {
     let noteInput = noteContentRef.value;  
     notesTitles.push(noteTitleInput);
     notes.push(noteInput);
+    saveToLocalStorage();
     renderNotes();
     noteTitleRef.value = "";
     noteContentRef.value = "";
+}
+
+function saveToLocalStorage() {
+    localStorage.setItem("notes", JSON.stringify(notes)); 
+   }
+
+   function getFromLocalStorage() {
+    let notesList = JSON.parse(localStorage.getItem("notes"));
+    notes = notesList;
+    
 }
 
 function emtyTrash(indexTrashNote) {
@@ -71,7 +84,7 @@ function getNotesTemplate(indexNote) {
     `
 }
  function getTrashNotesTemplate(indexTrashNote) {
-    return `<div class="grid grid-cols-2 w-full"> <span>+ ${notesTitlesTrash[indexTrashNote]} - ${trash[indexTrashNote]}</span> <button class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:cursor-pointer hover:bg-gray-300" onclick="emtyTrash(${indexTrashNote})"> emty trash </button></div>`
+    return `<div class="grid grid-cols-2 w-full"> <span>+ ${notesTitlesTrash[indexTrashNote]} - ${trash[indexTrashNote]}</span> <button class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:cursor-pointer hover:bg-gray-300" onclick="emtyTrash(${indexTrashNote})"> delete </button></div>`
 }
 
 function modalOverlay(event){
