@@ -38,3 +38,8 @@ ol[role='list']{
   .close{
     display: none;
   }
+  .bg-notiz{
+    background-image: url("../assets/images/pexels-photo-414627.webp");
+    background-repeat: no-repeat;
+    background-size:cover;
+  }

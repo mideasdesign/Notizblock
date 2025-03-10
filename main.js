@@ -6,8 +6,8 @@ let notesTitlesTrash = [];
 
 function renderNotes() {
 getFromLocalStorage();
-    let notesRef = document.getElementById('notes-container');
-    let notesTitleRef = document.getElementById('notes-container');
+    let notesRef = document.getElementById('notes-list');
+    let notesTitleRef = document.getElementById('notes-list');
    notesRef.innerHTML = "";
    notesTitleRef.innerHTML = "";
     for (let indexNote = 0; indexNote < notes.length; indexNote++) {
