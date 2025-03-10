@@ -1,7 +1,7 @@
 
-let notes = ["title"];
+let notes = [];
 let trash = [];
-let notesTitles = ["der Titel"];
+let notesTitles = [];
 let notesTitlesTrash = [];
 
 function renderNotes() {
@@ -22,14 +22,13 @@ function renderTrashNotes() {
         trashNotesRef.innerHTML += getTrashNotesTemplate(indexTrashNote);
     }
 }
-function renderTrashNotesTitle() {
+function renderTrashNotesTitles() {
     let trashNotesTitlesRef = document.getElementById('notes-trash');
     trashNotesTitlesRef.innerHTML = "";
     for (let indexTrashNoteTitle = 0; indexTrashNoteTitle < trash.length; indexTrashNoteTitle++) {
         trashNotesTitlesRef.innerHTML += getTrashNotesTemplate(indexTrashNoteTitle);
     }
 }
-
 
 function addNote(indexNote) {
     let noteContentRef = document.getElementById('note-content');
@@ -46,17 +45,25 @@ function addNote(indexNote) {
 
 function saveToLocalStorage() {
     localStorage.setItem("notes", JSON.stringify(notes)); 
+    localStorage.setItem("notesTitles", JSON.stringify(notesTitles)); 
    }
 
    function getFromLocalStorage() {
     let notesList = JSON.parse(localStorage.getItem("notes"));
-    notes = notesList;
-    
+    if (notesList == null) {
+        document.getElementById('notes-container').innerHTML += "I have changed!";
+    }
+    else{
+        notes = notesList;
+    }
 }
 
 function emtyTrash(indexTrashNote) {
     trash.splice(indexTrashNote, 1);
+    localStorage.removeItem("notes");
+    localStorage.removeItem("notesTitles");
     renderTrashNotes();
+    renderNotes();
 }
 
 function addToTrash(indexNote) {
@@ -64,12 +71,10 @@ function addToTrash(indexNote) {
     trash.push(trashNote[0]);
     let trashNoteTitles = notesTitles.splice(indexNote, 1);
     notesTitlesTrash.push(trashNoteTitles[0]);
-
     let toggleRef = document.getElementById('my-modal')
     toggleRef.classList.toggle('close');
-
     renderTrashNotes();
-    renderTrashNotesTitle();
+    renderTrashNotesTitles();
 }
 
 function getNotesTemplate(indexNote) {
@@ -80,8 +85,7 @@ function getNotesTemplate(indexNote) {
         <div id="notes-list" class="mt-3 text-sm leading-6 text-gray-600">
             <p>${notes[indexNote]} </p>
         </div>
-        </details>
-    `
+        </details>`
 }
  function getTrashNotesTemplate(indexTrashNote) {
     return `<div class="grid grid-cols-2 w-full"> <span>+ ${notesTitlesTrash[indexTrashNote]} - ${trash[indexTrashNote]}</span> <button class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:cursor-pointer hover:bg-gray-300" onclick="emtyTrash(${indexTrashNote})"> delete </button></div>`
