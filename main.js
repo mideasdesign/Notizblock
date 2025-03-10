@@ -71,7 +71,7 @@ function getNotesTemplate(indexNote) {
     `
 }
  function getTrashNotesTemplate(indexTrashNote) {
-    return `<div class="flex flex-1 justify-between hover:cursor-pointer"> + ${notesTitlesTrash[indexTrashNote]} - ${trash[indexTrashNote]} <button class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:bg-gray-300" onclick="emtyTrash(${indexTrashNote})"> emty trash </button></div>`
+    return `<div class="grid grid-cols-2 w-full"> <span>+ ${notesTitlesTrash[indexTrashNote]} - ${trash[indexTrashNote]}</span> <button class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:cursor-pointer hover:bg-gray-300" onclick="emtyTrash(${indexTrashNote})"> emty trash </button></div>`
 }
 
 function modalOverlay(event){
