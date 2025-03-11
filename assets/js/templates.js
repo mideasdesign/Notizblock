@@ -1,5 +1,5 @@
 function getNotesTemplate(indexNote) {
-    return `
+  return `
         <details class="p-6 border my-4 border-transparent open:border-black/10 open:bg-gray-100 open:rounded-xl ...">
         <summary class="flex justify-between hover:cursor-pointer text-sm leading-6 font-semibold text-gray-900 select-none">
             <h3 id="note-header" class="text-2xl text-gray-600 flex">${notesTitles[indexNote]}</h3>
@@ -9,11 +9,11 @@ function getNotesTemplate(indexNote) {
             <button id="add-to-trash" class="mt-4 py-1 border-2 border-gray-300 rounded-xl px-2 hover:bg-gray-300" onclick="addToTrash(${indexNote})">in den Papierkorb</button>
             <button id="add-to-archive" class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:bg-gray-300" onclick="addToArchive(${indexNote})">archivieren</button>
         </div>
-        </details>`
+        </details>`;
 }
- function getTrashNotesTemplate(indexTrashNote) {
-    return `<div class="grid grid-rows-2 sm:grid-cols-2 w-full"> <span>+ ${notesTitlesTrash[indexTrashNote]} - ${trash[indexTrashNote]}</span> <button class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:cursor-pointer hover:bg-gray-300" onclick="emtyTrash(${indexTrashNote})"> delete </button></div>`
+function getTrashNotesTemplate(indexTrashNote) {
+  return `<div class="grid grid-rows-2 sm:grid-cols-2 w-full"> <span>+ ${notesTitlesTrash[indexTrashNote]} - ${trash[indexTrashNote]}</span> <button class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:cursor-pointer hover:bg-gray-300" onclick="emtyTrash(${indexTrashNote})"> delete </button></div>`;
 }
-function getArchiveNotesTemplate(indexTrashNote) {
-    return `<div class="grid grid-rows-2 sm:grid-cols-2 w-full"> <span>+ ${notesTitlesArchive[indexNotesArchive]} - ${trash[indexTrashNote]}</span> <button class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:cursor-pointer hover:bg-gray-300" onclick="emtyTrash(${indexTrashNote})"> delete </button></div>`
+function getArchiveNotesTemplate(indexNotesArchive) {
+  return `<div class="grid grid-rows-2 sm:grid-cols-2 w-full"> <span>+ ${notesTitlesArchive[indexArchiveNoteTitle]} - ${notesArchive[indexNotesArchive]}</span> <button class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:cursor-pointer hover:bg-gray-300" onclick="emtyTrash(${indexTrashNote})"> delete </button></div>`;
 }

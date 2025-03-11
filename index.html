@@ -1,48 +1,94 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mein Notizblock</title> 
-        <script src="./assets/js/templates.js"></script>   
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mein Notizblock</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="./favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./apple-touch-icon.png"
+    />
+    <script src="./assets/js/templates.js"></script>
     <script src="./main.js"></script>
-    <link rel="stylesheet" href="global.css">
-    <link rel="stylesheet" href="output.css">
-</head>
-<body onload="renderNotes()">
-    <div id="my-modal" onclick="modalOverlay(event)" class=" overlay w-full h-full px-4 z-40 flex justify-center items-center close">
-        <div id="modal-content" class=" px-5 flex justify-center items-center w-full">
-        <div onclick="event.stopPropagation()" class="flex flex-col even w-full justify-center items-center p-6 md:w-2xl shadow-2xl bg-gray-300 rounded-3xl">
-            <h3 id="note-header" class="text-xl h-14 md:text-2xl text-center px-5 mb-7 text-gray-800">Trash</h3>
-            <div id="notes-trash" class="w-full p-8 md:w-2xl text-gray-800">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime dolor sit ab quam facilis ea minima dolores et! Fugit qui corporis ipsum sed repellendus laborum voluptatum quis excepturi deserunt tempora. </div>
+    <link rel="stylesheet" href="global.css" />
+    <link rel="stylesheet" href="output.css" />
+  </head>
+  <body onload="renderNotes()">
+    <div
+      id="my-modal"
+      onclick="modalOverlay(event)"
+      class="overlay w-full h-full px-4 z-40 flex justify-center items-center close" >
+      <div
+        id="modal-content"
+        class="px-5 flex justify-center items-center w-full" >
+        <div
+          onclick="event.stopPropagation()"
+          class="flex flex-col even w-full justify-center items-center p-6 md:w-2xl shadow-2xl bg-gray-300 rounded-3xl" >
+          <h3
+            id="note-header"
+            class="text-xl h-14 md:text-2xl text-center px-5 mb-7 text-gray-800" >
+            Trash
+          </h3>
+          <div id="notes-trash" class="w-full p-8 md:w-2xl text-gray-800">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime
+            dolor sit ab quam facilis ea minima dolores et! Fugit qui corporis
+            ipsum sed repellendus laborum voluptatum quis excepturi deserunt
+            tempora.
+          </div>
         </div>
-        </div>
+      </div>
     </div>
     <div class="w-dvw h-dvh flex justify-center items-center bg-notiz">
-        <main  class="grid grid-cols-2 gap-10 w-dvw sm:max-w-7xl p-10 rounded-3xl border-2 border-gray-300 bg-neutral-100 opacity-95 drop-shadow-md ">
+      <main
+        class="grid grid-cols-2 gap-10 w-dvw sm:max-w-7xl p-10 rounded-3xl border-2 border-gray-300 bg-neutral-100 opacity-95 drop-shadow-md">
+        <section id="notes-container">
+          <div id="notes-list"></div>
+          <div id="notes-archive">Archive</div>
+        </section>
+        <section class="col-span-1">
+          <div class="mb-10">
+            <h1 class="text-5xl text-gray-600">Notizblock</h1>
+          </div>
+          <div id="create-note" class="col-span-1">
+            <div class="grid p-8 rounded-2xl border-2 border-gray-300">
+              <label for="note-title" class="text-2xl text-gray-600"></label>
+                Titel
+              </label>
+              <input
+                type="text"
+                id="note-title"
+                class="border-2 rounded-xl border-gray-300 p-2 my-4 outline-gray-500"
+                placeholder="Bitte einen Titel eingeben." />
+              <label for="note-content" class="text-2xl text-gray-600">
+                Notiz:
+              </label>
 
-            <section id="notes-container" class="">
-                <div id="notes-list"></div>
-                <div id="notes-archive">Archive</div>
-            </section>
-            <section class="col-span-1">
-            <div class="mb-10">
-                <h1 class="text-5xl text-gray-600">Notizblock</h1>
+              <textarea
+                name="Note"
+                id="note-content"
+                class="p-2 my-4 rounded-xl border-2 border-gray-300 outline-gray-500"
+                placeholder="Bitte einen Notiz eingeben." >
+              </textarea>
+              <button
+                id="add-button"
+                class="text-gray-600 rounded-xl border-2 bg-gray-300 py-4 my-4 hover:bg-white border-gray-300 hover:shadow-neutral-200 hover:shadow-2x"
+                onclick="addNote()" >
+                Notiz erstellen
+              </button>
             </div>
-            <div id="create-note" class="col-span-1">
-                <div class="grid p-8 rounded-2xl border-2 border-gray-300">
-                    <label for="note-title" class="text-2xl text-gray-600">Titel</label>
-                    <input type="text" id="note-title" class="border-2 rounded-xl  border-gray-300 p-2 my-4   outline-gray-500" placeholder="Bitte einen Titel eingeben.">
-                    <label for="note-content" class="text-2xl text-gray-600">Notiz:</label>
-                    
-                    <textarea name="Note" id="note-content" class="p-2  my-4 rounded-xl  border-2 border-gray-300   outline-gray-500" placeholder="Bitte einen Notiz eingeben."></textarea>
-                    <button id="add-button" class="text-gray-600 rounded-xl border-2 bg-gray-300 py-4 my-4 hover:bg-white border-gray-300 hover:shadow-neutral-200 hover:shadow-2x" onclick="addNote()">Notiz erstellen</button>
-                </div>
-            </div>
-            </section>
-        </main>
+          </div>
+        </section>
+      </main>
     </div>
-    <footer>
-    </footer>
-</body>
+    <footer></footer>
+  </body>
 </html>

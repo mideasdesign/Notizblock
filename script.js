@@ -1,6 +1,6 @@
-let notes = ['banana', 'Erdbeere', 'apfel'];
+let notes = [];
 let trash = [];
-let notesTitles = ['title0', 'title1', 'title2'];
+let notesTitles = [];
 let notesTitlesTrash = [];
 
 function renderNotes() {
