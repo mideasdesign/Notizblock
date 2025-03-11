@@ -3,6 +3,8 @@ let notes = [];
 let trash = [];
 let notesTitles = [];
 let notesTitlesTrash = [];
+let notesArchive = [];
+let notesArchiveTitles = [];
 
 function init(){
     getFromLocalStorage();
@@ -31,6 +33,22 @@ function renderTrashNotesTitles() {
     trashNotesTitlesRef.innerHTML = "";
     for (let indexTrashNoteTitle = 0; indexTrashNoteTitle < trash.length; indexTrashNoteTitle++) {
         trashNotesTitlesRef.innerHTML += getTrashNotesTemplate(indexTrashNoteTitle);
+    }
+}
+
+function renderArchiveNotesTitles() {
+    let archiveNotesTitleRef = document.getElementById('notes-archive');
+    archiveNotesTitleRef.innerHTML = "";
+    for (let indexArchiveNoteTitle = 0; indexArchiveNoteTitle < notesArchive.length; indexArchiveNoteTitle++) {
+        archiveNotesTitleRef.innerHTML += getArchiveNotesTemplate(indexArchiveNoteTitle);
+    }
+}
+
+function renderArchiveNotes() {
+    let archiveNotesRef = document.getElementById('notes-archive');
+    archiveNotesRef.innerHTML = "";
+    for (let indexArchiveNote = 0; indexArchiveNote < notesArchive.length; indexArchiveNote++) {
+        archiveNotesRef.innerHTML += getArchiveNotesTemplate(indexArchiveNote);
     }
 }
 
@@ -79,6 +97,18 @@ function addToTrash(indexNote) {
     notesTitlesTrash.push(trashNoteTitles[0]);
     let toggleRef = document.getElementById('my-modal')
     toggleRef.classList.toggle('close');
+    renderTrashNotes();
+    renderTrashNotesTitles();
+    renderNotes();
+}
+
+function addToArchive(indexNote) {
+    let archiveNote = notes.splice(indexNote, 1);
+    notesArchive.push(archiveNote[0]);
+    let notesArchiveTitles = notesTitles.splice(indexNote, 1);
+    notesArchiveTitles.push(notesArchiveTitles[0]);
+    renderArchiveNotes();
+    renderArchiveNotesTitles();
     renderTrashNotes();
     renderTrashNotesTitles();
     renderNotes();
