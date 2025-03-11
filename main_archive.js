@@ -43,6 +43,29 @@ function renderTrashNotesTitles() {
     }
 }
 
+function renderArchiveNotes() {
+  let archiveNotesRef = document.getElementById("notes-archive");
+  archiveNotesRef.innerHTML = "";
+  for (
+    let indexArchiveNote = 0;
+    indexArchiveNote < notesArchive.length;
+    indexArchiveNote++
+  ) {
+    archiveNotesRef.innerHTML += getArchiveNotesTemplate(indexArchiveNote);
+    }
+}
+function renderArchiveNotesTitles() {
+  let archiveNotesTitlesRef = document.getElementById("notes-archive");
+  archiveNotesTitlesRef.innerHTML = "";
+  for (
+    let indexArchiveNoteTitle = 0;
+    indexArchiveNoteTitle < notesArchive.length;
+    indexArchiveNoteTitle++
+  ) {
+    archiveNotesTitlesRef.innerHTML += getArchiveNotesTemplate(indexArchiveNoteTitle);
+    }
+}
+
 function addNote(indexNote) {
   let noteContentRef = document.getElementById("note-content");
   let noteTitleRef = document.getElementById("note-title");
@@ -76,6 +99,7 @@ function emtyTrash(indexTrashNote) {
   trash.splice(indexTrashNote, 1);
   localStorage.removeItem("notes");
   localStorage.removeItem("notesTitles");
+  renderArchiveNotesTitles();
   renderArchiveNotes();
   renderTrashNotes();
   renderNotes();
@@ -93,6 +117,17 @@ function addToTrash(indexNote) {
   renderNotes();
 }
 
+function addToArchive(indexNote) {
+  let archiveNote = notes.splice(indexNote, 1);
+  notesArchive.push(archiveNote[0]);
+  let archiveNoteTitles = notesTitles.splice(indexNote, 1);
+  notesTitlesArchive.push(archiveNoteTitles[0]);
+  renderArchiveNotes();
+  renderArchiveNotesTitles();
+  renderTrashNotes();
+  renderTrashNotesTitles();
+  renderNotes();
+}
 
 function modalOverlay(event) {
   let toggleRef = document.getElementById("my-modal");
