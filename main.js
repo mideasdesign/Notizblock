@@ -8,7 +8,8 @@ let notesArchiveTitles = [];
 
 function init(){
     getFromLocalStorage();
-        renderNotes();
+    renderNotes();
+    renderArchiveNotes();
     }
 
 function renderNotes() {
@@ -36,19 +37,20 @@ function renderTrashNotesTitles() {
     }
 }
 
-function renderArchiveNotesTitles() {
-    let archiveNotesTitleRef = document.getElementById('notes-archive');
-    archiveNotesTitleRef.innerHTML = "";
-    for (let indexArchiveNoteTitle = 0; indexArchiveNoteTitle < notesArchive.length; indexArchiveNoteTitle++) {
-        archiveNotesTitleRef.innerHTML += getArchiveNotesTemplate(indexArchiveNoteTitle);
-    }
-}
 
 function renderArchiveNotes() {
     let archiveNotesRef = document.getElementById('notes-archive');
     archiveNotesRef.innerHTML = "";
     for (let indexArchiveNote = 0; indexArchiveNote < notesArchive.length; indexArchiveNote++) {
         archiveNotesRef.innerHTML += getArchiveNotesTemplate(indexArchiveNote);
+    }
+}
+
+function renderArchiveNotesTitles() {
+    let archiveNotesTitleRef = document.getElementById('notes-archive');
+     archiveNotesTitleRef.innerHTML = "";
+    for (let indexArchiveNoteTitle = 0; indexArchiveNoteTitle < notesArchiveTitles.length; indexArchiveNoteTitle++) {
+        archiveNotesTitleRef.innerHTML += getArchiveNotesTemplate(indexArchiveNoteTitle);
     }
 }
 
@@ -86,6 +88,7 @@ function emtyTrash(indexTrashNote) {
     trash.splice(indexTrashNote, 1);
     localStorage.removeItem("notes");
     localStorage.removeItem("notesTitles");
+    renderArchiveNotes();
     renderTrashNotes();
     renderNotes();
 }
@@ -93,6 +96,7 @@ function emtyTrash(indexTrashNote) {
 function addToTrash(indexNote) {
     let trashNote = notes.splice(indexNote, 1);
     trash.push(trashNote[0]);
+
     let trashNoteTitles = notesTitles.splice(indexNote, 1);
     notesTitlesTrash.push(trashNoteTitles[0]);
     let toggleRef = document.getElementById('my-modal')
@@ -105,10 +109,11 @@ function addToTrash(indexNote) {
 function addToArchive(indexNote) {
     let archiveNote = notes.splice(indexNote, 1);
     notesArchive.push(archiveNote[0]);
-    let notesArchiveTitles = notesTitles.splice(indexNote, 1);
+    let notesArchiveTitles =  notesTitles.splice(indexNote, 1);
     notesArchiveTitles.push(notesArchiveTitles[0]);
-    renderArchiveNotes();
+
     renderArchiveNotesTitles();
+    renderArchiveNotes();
     renderTrashNotes();
     renderTrashNotesTitles();
     renderNotes();
