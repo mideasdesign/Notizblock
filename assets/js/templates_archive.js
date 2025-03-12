@@ -16,5 +16,5 @@ function getTrashNotesTemplate(indexTrashNote) {
 }
 
 function  getArchiveNotesTemplate(indexArchiveNote) {
-  return `<div class="grid grid-rows-3 sm:grid-cols-3 w-full"> <h3>+ ${notesTitlesArchive[indexArchiveNote]}</h3> <p> ${notesArchive[indexArchiveNote]}</p> <button class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:cursor-pointer hover:bg-gray-300" onclick="emtyTrash(${indexArchiveNote})"> delete </button></div>`;
+  return `<div class="flex flex-col w-full"> <h3 class="flex text-md text-gray-600 ">+ ${notesTitlesArchive[indexArchiveNote]}</h3> <p class="flex py-3"> ${notesArchive[indexArchiveNote]}</p> <button class="py-1 border-2 border-gray-300 rounded-xl px-2 w-7 hover:cursor-pointer hover:bg-gray-300" onclick="addToTrash(${indexArchiveNote})"> In den Papierkorb</button></div>`;
 }

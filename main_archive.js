@@ -82,25 +82,40 @@ function addNote(indexNote) {
 function saveToLocalStorage() {
   localStorage.setItem("notes", JSON.stringify(notes));
   localStorage.setItem("notesTitles", JSON.stringify(notesTitles));
+  localStorage.setItem("notesArchive ", JSON.stringify(notesArchive));
+  localStorage.setItem("notesTitlesArchive", JSON.stringify(notesTitlesArchive));
+  console.log(notesArchive, notesTitlesArchive, notesTitles);
+  
 }
 
 function getFromLocalStorage() {
   let notesList = JSON.parse(localStorage.getItem("notes"));
   let notesListTitles = JSON.parse(localStorage.getItem("notesTitles"));
+  let notesListArchive = JSON.parse(localStorage.getItem("notesArchive"));
+  let notesListArchiveTitles = JSON.parse(localStorage.getItem("notesTitlesArchive"));
+
   if (notesList == null) {
     document.getElementById("notes-list").innerHTML += "No notes";
   } else {
     notes = notesList;
     notesTitles = notesListTitles;
+    notesArchive = notesListArchive;
+    notesTitlesArchive = notesListArchiveTitles;
     }
-}
+    if (notesArchive == null) {
+      document.getElementById("notes-list").innerHTML += "No notes";
+    } else {
+      notesArchive = notesListArchive;
+      notesTitlesArchive = notesListArchiveTitles;
+      }
+  }
 
 function emtyTrash(indexTrashNote) {
   trash.splice(indexTrashNote, 1);
   localStorage.removeItem("notes");
   localStorage.removeItem("notesTitles");
-  renderArchiveNotesTitles();
   renderArchiveNotes();
+  renderArchiveNotesTitles();
   renderTrashNotes();
   renderNotes();
 }
@@ -112,6 +127,8 @@ function addToTrash(indexNote) {
   notesTitlesTrash.push(trashNoteTitles[0]);
   let toggleRef = document.getElementById("my-modal");
   toggleRef.classList.toggle("close");
+  renderArchiveNotes();
+  renderArchiveNotesTitles();
   renderTrashNotes();
   renderTrashNotesTitles();
   renderNotes();
@@ -122,6 +139,7 @@ function addToArchive(indexNote) {
   notesArchive.push(archiveNote[0]);
   let archiveNoteTitles = notesTitles.splice(indexNote, 1);
   notesTitlesArchive.push(archiveNoteTitles[0]);
+  saveToLocalStorage();
   renderArchiveNotes();
   renderArchiveNotesTitles();
   renderTrashNotes();
