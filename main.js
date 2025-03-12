@@ -44,7 +44,7 @@ function renderTrashNotesTitles() {
 }
 
 function renderArchiveNotes() {
-  let archiveNotesRef = document.getElementById("notes-archive");
+  let archiveNotesRef = document.getElementById("notes-archive-conatiner");
   archiveNotesRef.innerHTML = "";
   for (
     let indexArchiveNote = 0;
@@ -55,7 +55,7 @@ function renderArchiveNotes() {
     }
 }
 function renderArchiveNotesTitles() {
-  let archiveNotesTitlesRef = document.getElementById("notes-archive");
+  let archiveNotesTitlesRef = document.getElementById("notes-archive-container");
   archiveNotesTitlesRef.innerHTML = "";
   for (
     let indexArchiveNoteTitle = 0;
@@ -100,7 +100,6 @@ function emtyTrash(indexTrashNote) {
   trash.splice(indexTrashNote, 1);
   localStorage.removeItem("notes");
   localStorage.removeItem("notesTitles");
-
   renderTrashNotes();
   renderNotes();
 }
