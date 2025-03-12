@@ -82,6 +82,8 @@ function addNote(indexNote) {
 function saveToLocalStorage() {
   localStorage.setItem("notes", JSON.stringify(notes));
   localStorage.setItem("notesTitles", JSON.stringify(notesTitles));
+  localStorage.setItem("notesArchive", JSON.stringify(notesArchive));
+  localStorage.setItem("notesTitlesArchive", JSON.stringify(notesTitlesArchive));
 }
 
 function getFromLocalStorage() {
@@ -119,6 +121,7 @@ function addToArchive(indexNote) {
   notesArchive.push(archiveNote[0]);
   let archiveNoteTitles = notesTitles.splice(indexNote, 1);
   notesTitlesArchive.push(archiveNoteTitles[0]);
+  saveToLocalStorage();
   renderArchiveNotes();
   renderArchiveNotesTitles();
   renderTrashNotes();
@@ -127,9 +130,10 @@ function addToArchive(indexNote) {
 }
 function archiveToTrash(indexArchiveNote) {
   let archiveToNote = notesArchive .splice(indexArchiveNote, 1);
-  trash.push(archiveToNote[0]);
+  notes.push(archiveToNote[0]);
   let archiveToNoteTitles = notesTitlesArchive.splice(indexArchiveNote, 1);
-  notesTitlesTrash.push(archiveToNoteTitles[0]);
+  notesTitles.push(archiveToNoteTitles[0]);
+  saveToLocalStorage();
   renderArchiveNotes();
   renderArchiveNotesTitles();
   renderTrashNotes();
