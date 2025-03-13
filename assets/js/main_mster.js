@@ -98,11 +98,9 @@ function getFromLocalStorage() {
 
 function emtyTrash(indexTrashNote) {
   trash.splice(indexTrashNote, 1);
-  localStorage.removeItem("notes");
-  localStorage.removeItem("notesTitles");
-
-  renderTrashNotes();
-  renderNotes();
+  localStorage.removeItem("trash");
+  localStorage.removeItem("notesTitlesTrash");    
+  renderAll();    
 }
 
 function addToTrash(indexNote) {

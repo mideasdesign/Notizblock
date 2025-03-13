@@ -12,9 +12,9 @@ function init() {
 
 function renderAll() {
   saveToLocalStorage();
-  renderTrashNotes();
-  renderTrashNotesTitles();
+  getFromLocalStorage();
   renderNotes();
+  renderTrashNotes();
   renderTrashNotesTitles();
   renderArchiveNotesTitles();  
   renderArchiveNotes();
@@ -83,32 +83,28 @@ function addNote(indexNote) {
 function saveToLocalStorage() {
   localStorage.setItem("notes", JSON.stringify(notes));
   localStorage.setItem("notesTitles", JSON.stringify(notesTitles));
+  localStorage.setItem("trash", JSON.stringify(trash));
+  localStorage.setItem("notesTitlesTrash", JSON.stringify(notesTitlesTrash));
   localStorage.setItem("notesArchive", JSON.stringify(notesArchive));
   localStorage.setItem("notesTitlesArchive", JSON.stringify(notesTitlesArchive));
 }
 
 function getFromLocalStorage() {
-  let notesList = JSON.parse(localStorage.getItem("notes"));
-  let notesListTitles = JSON.parse(localStorage.getItem("notesTitles"));
-  let notesListArchive = JSON.parse(localStorage.getItem("notesArchive"));
-  let notesListArchiveTitles = JSON.parse(localStorage.getItem("notesTitlesArchive"));
-
-  if (notesList == null || notesArchive == null) {
-    document.getElementById("notes-list").innerHTML += "No notes";
-  } else {
-    notes = notesList;
-    notesTitles = notesListTitles;
-    notesArchive= notesListArchive;
-    notesTitlesArchive = notesListArchiveTitles;
-    }
+  notes = JSON.parse(localStorage.getItem("notes")) || [];
+  notesTitles = JSON.parse(localStorage.getItem("notesTitles")) || [];
+  trash = JSON.parse(localStorage.getItem("trash")) || [];
+  notesTitlesTrash = JSON.parse(localStorage.getItem("notesTitlesTrash")) || [];
+  notesArchive = JSON.parse(localStorage.getItem("notesArchive")) || [];
+  notesTitlesArchive  = JSON.parse(localStorage.getItem("notesTitlesArchive")) || [];
 }
 
 function emtyTrash(indexTrashNote) {
-  let closeRef = document.getElementById("my-modal");
+/*   let closeRef = document.getElementById("my-modal"); */
   trash.splice(indexTrashNote, 1);
-  localStorage.removeItem("notes");
-  localStorage.removeItem("notesTitles");
-  closeRef.classList.add("close");
+  notesTitlesTrash.splice(indexTrashNote, 1);
+  localStorage.removeItem("trash");
+  localStorage.removeItem("notesTitlesTrash");
+/*   closeRef.classList.add("close"); */
   renderAll();
 }
 
@@ -119,9 +115,7 @@ function addToTrash(indexNote) {
   notesTitlesTrash.push(trashNoteTitles[0]);
 /*   let toggleRef = document.getElementById("my-modal");
   toggleRef.classList.toggle("close"); */
-  renderTrashNotes();  
-  renderTrashNotesTitles();
-  renderNotes();
+  renderAll();
 }
 
 function addToArchive(indexNote) {
@@ -153,14 +147,21 @@ function archiveToNotes(indexArchiveNote) {
   notesTitles.push(archiveToNoteTitles[0]);
 renderAll();
 }
+function archiveToTrash(indexArchiveNote) {
+  let archiveToTrash = notesArchive .splice(indexArchiveNote, 1);
+  trash.push(archiveToTrash[0]);
+  let archiveTotrashTitles = notesTitlesArchive.splice(indexArchiveNote, 1);
+  notesTitlesTrash.push(archiveTotrashTitles[0]);
+renderAll();
+}
 
 function trashToNotes(indexTrashNote) {
-  let closeRef = document.getElementById("my-modal");
+/*   let closeRef = document.getElementById("my-modal"); */
   let trashToNote = trash .splice(indexTrashNote, 1);
   notes.push(trashToNote[0]);
   let trashToNoteTitles = notesTitlesTrash.splice(indexTrashNote, 1);
   notesTitles.push(trashToNoteTitles[0]);
-  closeRef.classList.add("close");
+/*   closeRef.classList.add("close"); */
 renderAll();
 }
 
