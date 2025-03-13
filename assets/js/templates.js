@@ -6,8 +6,8 @@ function getNotesTemplate(indexNote) {
           </summary>
           <div id="notes-list" class="mt-2 text-sm leading-6 text-gray-600">
               <p>${notes[indexNote]} </p>
-              <button id="add-to-trash" class="mt-4 py-1 border-2 border-gray-300 rounded-xl px-2 hover:bg-gray-300" onclick="addToTrash(${indexNote})">in den Papierkorb</button>
-              <button id="add-to-archive" class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:bg-gray-300" onclick="addToArchive(${indexNote})">archivieren</button>
+              <button id="add-to-trash" class="mt-4 py-1 border-2 border-gray-300 rounded-xl px-2 hover:bg-gray-300 hover:cursor-pointer" onclick="addToTrash(${indexNote})">in den Papierkorb</button>
+              <button id="add-to-archive" class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:bg-gray-300 hover:cursor-pointer" onclick="addToArchive(${indexNote})">archivieren</button>
           </div>
         </details>`;
 }
@@ -29,7 +29,5 @@ function getArchiveNotesTemplate(indexArchiveNote) {
             <br />
             <button class="py-1 border-2 border-gray-300 rounded-xl px-2 mr-10 hover:cursor-pointer hover:bg-gray-300" onclick="archiveToNotes(${indexArchiveNote})"> zurück verschieben </button> 
             <button class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:cursor-pointer hover:bg-gray-300" onclick="deleteArchiveNote(${indexArchiveNote})"> delete </button>
-            
-            
           </div>`;
 }

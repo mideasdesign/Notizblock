@@ -32,7 +32,7 @@ function renderNotes() {
 }
 
 function renderTrashNotes() {
-  let trashNotesRef = document.getElementById("notes-trash");
+  let trashNotesRef = document.getElementById("notes-trash-container");
   trashNotesRef.innerHTML = "";
   for (let indexTrashNote = 0; indexTrashNote < trash.length;indexTrashNote++) 
     {
@@ -41,7 +41,7 @@ function renderTrashNotes() {
 }
 
 function renderTrashNotesTitles() {
-  let trashNotesTitlesRef = document.getElementById("notes-trash");
+  let trashNotesTitlesRef = document.getElementById("notes-trash-container");
   trashNotesTitlesRef.innerHTML = "";
   for (let indexTrashNoteTitle = 0; indexTrashNoteTitle < trash.length; indexTrashNoteTitle++) 
     {
@@ -117,8 +117,8 @@ function addToTrash(indexNote) {
   trash.push(trashNote[0]);
   let trashNoteTitles = notesTitles.splice(indexNote, 1);
   notesTitlesTrash.push(trashNoteTitles[0]);
-  let toggleRef = document.getElementById("my-modal");
-  toggleRef.classList.toggle("close");
+/*   let toggleRef = document.getElementById("my-modal");
+  toggleRef.classList.toggle("close"); */
   renderTrashNotes();  
   renderTrashNotesTitles();
   renderNotes();
