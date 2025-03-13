@@ -153,6 +153,14 @@ function archiveToNotes(indexArchiveNote) {
 renderAll();
 }
 
+function trashToNotes(indexTrashNote) {
+  let trashToNote = trash .splice(indextrashNote, 1);
+  notes.push(trashToNote[0]);
+  let trashToNoteTitles = notesTitlesTrash.splice(indextrashNote, 1);
+  notesTitles.push(trashToNoteTitles[0]);
+renderAll();
+}
+
 function modalOverlay(event) {
   let toggleRef = document.getElementById("my-modal");
   toggleRef.classList.toggle("close");
