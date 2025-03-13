@@ -15,6 +15,9 @@ function renderAll() {
   renderTrashNotes();
   renderTrashNotesTitles();
   renderNotes();
+  renderTrashNotesTitles();
+  renderArchiveNotesTitles();  
+  renderArchiveNotes();
 }
 
 function renderNotes() {
@@ -95,8 +98,8 @@ function getFromLocalStorage() {
   } else {
     notes = notesList;
     notesTitles = notesListTitles;
-    notesListArchive = notesArchive;
-    notesListArchiveTitles = notesTitlesArchive;
+    notesArchive= notesListArchive;
+    notesTitlesArchive = notesListArchiveTitles;
     }
 }
 
@@ -113,7 +116,6 @@ function addToTrash(indexNote) {
   trash.push(trashNote[0]);
   let trashNoteTitles = notesTitles.splice(indexNote, 1);
   notesTitlesTrash.push(trashNoteTitles[0]);
-/*   console.log(trash,trashNoteTitles); */
   let toggleRef = document.getElementById("my-modal");
   toggleRef.classList.toggle("close");
   renderTrashNotes();  

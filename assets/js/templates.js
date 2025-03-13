@@ -11,8 +11,10 @@ function getNotesTemplate(indexNote) {
         </div>
         </details>`;
 }
+
 function getTrashNotesTemplate(indexTrashNote) {
-  return `<div class="grid grid-rows-3 sm:grid-cols-3 w-full"> <h3>+ ${notesTitlesTrash[indexTrashNote]}</h3> <p> ${trash[indexTrashNote]}</p> <button class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:cursor-pointer hover:bg-gray-300" onclick="emtyTrash(${indexTrashNote})"> delete </button></div>`;
+  return `<div class="grid grid-rows-3 sm:grid-cols-3 w-full"> <h3>+ ${notesTitlesTrash[indexTrashNote]}</h3> <p> ${trash[indexTrashNote]}</p> <button class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:cursor-pointer hover:bg-gray-300" onclick="emtyTrash(${indexTrashNote})"> delete </button>
+  </div>`;
 }
 
 function getArchiveNotesTemplate(indexArchiveNote) {
