@@ -16,7 +16,7 @@ function getTrashNotesTemplate(indexTrashNote) {
   return `<div class="grid grid-rows-3 sm:grid-cols-3 w-full"> 
             <h3>+ ${notesTitlesTrash[indexTrashNote]}</h3> 
             <p> ${trash[indexTrashNote]}</p> <br />
-            <button class="py-1 border-2 border-gray-300 rounded-xl px-2 mr-8 hover:cursor-pointer hover:bg-gray-300" onclick="trashToNotes(${indexTrashNote})"> zurück verschieben </button>
+            <button class="py-1 border-2 border-gray-300 rounded-xl px-2 mr-10 hover:cursor-pointer hover:bg-gray-300" onclick="trashToNotes(${indexTrashNote})"> zurück verschieben </button>
             <button class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:cursor-pointer hover:bg-gray-300" onclick="emtyTrash(${indexTrashNote})"> delete </button>
             
           </div>`;
@@ -27,7 +27,7 @@ function getArchiveNotesTemplate(indexArchiveNote) {
             <h3>+ ${notesTitlesArchive[indexArchiveNote]}</h3> 
             <p> ${notesArchive[indexArchiveNote]}</p>
             <br />
-            <button class="py-1 border-2 border-gray-300 rounded-xl px-2 mr-8 hover:cursor-pointer hover:bg-gray-300" onclick="archiveToNotes(${indexArchiveNote})"> zurück verschieben </button> 
+            <button class="py-1 border-2 border-gray-300 rounded-xl px-2 mr-10 hover:cursor-pointer hover:bg-gray-300" onclick="archiveToNotes(${indexArchiveNote})"> zurück verschieben </button> 
             <button class="py-1 border-2 border-gray-300 rounded-xl px-2 hover:cursor-pointer hover:bg-gray-300" onclick="deleteArchiveNote(${indexArchiveNote})"> delete </button>
             
             

@@ -104,11 +104,12 @@ function getFromLocalStorage() {
 }
 
 function emtyTrash(indexTrashNote) {
+  let closeRef = document.getElementById("my-modal");
   trash.splice(indexTrashNote, 1);
   localStorage.removeItem("notes");
   localStorage.removeItem("notesTitles");
-  saveToLocalStorage();
-renderAll();
+  closeRef.classList.add("close");
+  renderAll();
 }
 
 function addToTrash(indexNote) {
@@ -154,11 +155,12 @@ renderAll();
 }
 
 function trashToNotes(indexTrashNote) {
+  let closeRef = document.getElementById("my-modal");
   let trashToNote = trash .splice(indexTrashNote, 1);
   notes.push(trashToNote[0]);
   let trashToNoteTitles = notesTitlesTrash.splice(indexTrashNote, 1);
   notesTitles.push(trashToNoteTitles[0]);
-
+  closeRef.classList.add("close");
 renderAll();
 }
 
