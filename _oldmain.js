@@ -134,7 +134,6 @@ function addToArchive(indexNote) {
 
 function deleteArchiveNote(indexArchiveNote) {
   notesArchive .splice(indexArchiveNote, 1);
-  notesTitlesArchive .splice(indexArchiveNote, 1);
   localStorage.removeItem("notesArchive");
   localStorage.removeItem("notesTitlesArchive");
   saveToLocalStorage();
