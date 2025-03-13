@@ -154,10 +154,11 @@ renderAll();
 }
 
 function trashToNotes(indexTrashNote) {
-  let trashToNote = trash .splice(indextrashNote, 1);
+  let trashToNote = trash .splice(indexTrashNote, 1);
   notes.push(trashToNote[0]);
-  let trashToNoteTitles = notesTitlesTrash.splice(indextrashNote, 1);
+  let trashToNoteTitles = notesTitlesTrash.splice(indexTrashNote, 1);
   notesTitles.push(trashToNoteTitles[0]);
+
 renderAll();
 }
 
