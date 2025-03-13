@@ -188,6 +188,9 @@
   }
 }
 @layer utilities {
+  .fixed {
+    position: fixed;
+  }
   .z-40 {
     z-index: 40;
   }
